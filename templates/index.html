@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Vision Cart</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="app">
+    <header>
+        <div>
+            <h1>🛒 Smart Vision Cart</h1>
+            <p>AI-powered self checkout</p>
+        </div>
+        <div class="status" id="status">Camera ready</div>
+    </header>
+
+    <main class="grid">
+        <section class="camera-card">
+            <h2>Scan Product</h2>
+
+            <div class="camera-wrap">
+                <video id="video" autoplay playsinline></video>
+                <canvas id="canvas"></canvas>
+                <div class="scan-guide">Place ONE product inside the frame</div>
+            </div>
+
+            <div class="buttons">
+                <button id="startBtn">Start Camera</button>
+                <button id="captureBtn" class="primary">📷 Capture & Add</button>
+            </div>
+
+            <div id="detected" class="detected hidden"></div>
+        </section>
+
+        <section class="cart-card">
+            <div class="cart-head">
+                <h2>🛍️ Cart</h2>
+                <button id="clearBtn" class="danger-small">Clear</button>
+            </div>
+
+            <div id="cartList" class="cart-list">
+                <div class="empty">No products added yet.</div>
+            </div>
+
+            <div class="summary">
+                <div><span>Items</span><strong id="itemCount">0</strong></div>
+                <div class="total"><span>Total</span><strong>₹<span id="total">0.00</span></strong></div>
+            </div>
+
+            <button id="checkoutBtn" class="checkout" disabled>💳 Checkout</button>
+        </section>
+    </main>
+
+    <section id="paymentPanel" class="payment hidden">
+        <div class="payment-box">
+            <button id="closePayment" class="close">×</button>
+            <h2>Scan to Pay</h2>
+            <p>UPI payment amount</p>
+            <div class="pay-amount">₹<span id="payAmount">0.00</span></div>
+            <div id="qrcode"></div>
+            <p class="upi-note">Open any UPI app and scan this QR.</p>
+            <div id="upiText" class="upi-text"></div>
+            <button id="newTransaction" class="primary">New Transaction</button>
+        </div>
+    </section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>
